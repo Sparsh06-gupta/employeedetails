@@ -1,0 +1,48 @@
+﻿@model Employee
+
+<h1>Add Employee</h1>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="FirstName">FirstName:</label>
+        <input asp-for="FirstName" class="form-control" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="LastName">LastName:</label>
+        <input asp-for="LastName" class="form-control" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Gender">Gender:</label>
+        @Html.RadioButtonFor(m => m.Gender,"Male")
+        @Html.RadioButtonFor(m => m.Gender,"Female")
+    </div><div class="form-group">
+        <label asp-for="BirthDate">BirthDate:</label>
+        @Html.EditorFor(m => m.BirthDate, new {AddHtmlAttributeValue = new{@class = "datepicker"}})
+    </div><div class="form-group">
+        <label asp-for="JoinDate">JoinDate:</label>
+        @Html.EditorFor(m => m.JoinDate, new {AddHtmlAttributeValue = new{@class = "datepicker"}})
+    </div><div class="form-group">
+        <label asp-for="Hobbies">Hobbies:</label>
+        <span>Cricket: </span> @Html.CheckBox("Cricket",true)
+        <span> | Football: </span> @Html.CheckBox("Football", false)
+        <span> | Rugby: </span> @Html.CheckBox("Rugby", false)  
+    </div>
+    <div class="form-group">
+        <label asp-for="Skills">Skills:</label>
+        <span>.NET: </span> @Html.CheckBox(".net",true)
+        <span> | SQL: </span> @Html.CheckBox("sql", false) 
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-action="Index">Back to List</a>
+</form>
+<script>
+$(document).ready(function () {
+   $(".datepicker").datepicker({
+      dateFormat: "dd-mm-yy",
+      changemonth: true,
+      changeyear: true
+      });
+   });
+</script>
